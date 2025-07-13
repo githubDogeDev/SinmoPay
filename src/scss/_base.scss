@@ -28,7 +28,7 @@ body {
     background-repeat: no-repeat;    // Nie powtarzaj obrazu
     background-attachment: fixed;    // Efekt paralaksy: tło jest nieruchome
 
-    
+
     display: flex; // Ustawiamy body jako flex container
     flex-direction: column; // Elementy w kolumnie (header, main, footer)
     min-height: 100vh; // Zapewnia, że body ma co najmniej wysokość viewportu
@@ -38,22 +38,13 @@ body {
 }
 
 // Upewnij się, że nie masz tutaj innych background-color, które by to nadpisywały
-// .dark-mode {
-//     body {
-//         // Upewnij się, że nie ma tu stałego background-color np. background-color: #1F2937;
-//         // Jeśli jest, usuń go lub zakomentuj!
-//         // color jest już obsłużony przez mixin theme-aware
-//     }
-// }
 
 // Globalne style dla trybu ciemnego, jeśli nie są już w mixinach
-.dark-mode {
-    body {
-        // Kolor tekstu jest już obsługiwany przez mixin theme-aware
-        color: #E0E0E0; // Usuń tę linię, jeśli już masz mixin
-        background-color: #1F2937; // Usuń tę linię, jeśli już masz obraz tła
-    }
-}
+// .dark-mode {
+//     body {
+//         //empty for now
+//     }
+// }
 
 /* Globalne style dla elementów interaktywnych, np. linków */
 a {

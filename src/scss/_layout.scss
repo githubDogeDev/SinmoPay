@@ -200,3 +200,107 @@
 
     @include mixins.theme-aware(color, variables.$text-color-light, variables.$text-color-dark);
 }
+
+/* --- Układ strony formularzy (login, register) --- */
+body.form-page {
+    background-image: none;
+    background-attachment: scroll;
+    background-position: initial;
+    background-size: initial;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: variables.$padding-lg;
+
+    background-color: variables.$background-light; // Ustawienie tła dla trybu jasnego
+}
+
+body.form-page.dark-mode {
+    background-color: variables.$background-dark; // Ustawienie tła dla trybu ciemnego
+}
+
+.auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 450px; // Ogranicz szerokość kontenera
+}
+
+.auth-card {
+    border-radius: variables.$border-radius-lg;
+    padding: variables.$padding-lg;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    @include mixins.theme-aware(background-color, variables.$card-background-light, variables.$card-background-dark);
+    @include mixins.theme-aware(box-shadow, 0 4px 10px rgba(0, 0, 0, 0.1), 0 4px 15px rgba(0, 0, 0, 0.3));
+
+    h2 {
+        font-family: variables.$font-family-heading;
+        font-size: variables.$font-size-base * 1.8;
+        font-weight: variables.$font-weight-bold;
+        margin-bottom: variables.$spacing-unit * 3;
+        @include mixins.theme-aware(color, variables.$text-color-light, variables.$text-color-dark);
+
+        // Pogrubienie tekstu "pay" w nagłówku
+        span {
+            font-weight: variables.$font-weight-black;
+            color: variables.$primary-color; // Użyj koloru primary dla "pay"
+        }
+
+        a {
+            text-decoration: none;
+            @include mixins.theme-aware(color, variables.$text-color-light, variables.$text-color-dark);
+        }
+    }
+
+    label {
+        font-family: variables.$font-family-base;
+        font-size: variables.$font-size-base * 0.9;
+        margin-bottom: variables.$spacing-unit * 0.5;
+        margin-left: variables.$spacing-unit * 2;
+        display: block; // Upewnij się, że etykiety są blokowe
+        @include mixins.theme-aware(color, variables.$text-color-light, variables.$text-color-dark);
+    }
+}
+
+.auth-links {
+    margin-top: variables.$spacing-unit * 4;
+    font-size: variables.$font-size-base * 0.9;
+    display: flex;
+    flex-direction: row;
+
+    a {
+        color: variables.$primary-color;
+        text-decoration: none;
+        margin-left: variables.$spacing-unit;
+
+        &:hover {
+            text-decoration: none;
+        }
+
+        span {
+            padding-left: variables.$spacing-unit; // Pogrubienie tekstu "Zarejes
+        }
+    }
+
+    .btn--secondary {
+        background-color: transparent !important; // Przezroczyste tło
+        border-color: transparent !important; // Brak ramki
+        box-shadow: none !important; // Brak cienia
+        // Ramka dla przycisków outline
+        @include mixins.theme-aware(color, variables.$text-color-light, variables.$text-color-dark);
+        @include mixins.theme-aware(border-color, variables.$text-color-light, variables.$text-color-dark);
+        &:hover {
+            background-color: rgba(0,0,0,0.1) !important;
+
+            @include mixins.theme-aware(border-color, variables.$primary-color, color.adjust(variables.$primary-color, $lightness: 10%));
+        }
+    }
+}

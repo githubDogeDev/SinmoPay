@@ -33,6 +33,12 @@ $border-radius-medium: 1rem;
 $border-radius-large: 2rem;
 $border-radius-pill: 9999px;
 
+// zaokrąglenia skrócone dla łatwiejszego użycia
+$border-radius-sm: $border-radius-small;
+$border-radius-md: $border-radius-medium;
+$border-radius-lg: $border-radius-large; 
+
+
 // Cienie (możesz dostosować stopień rozmycia i krycia)
 $shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
 $shadow-md: 0 3px 6px rgba(0, 0, 0, 0.12), 0 3px 6px rgba(0, 0, 0, 0.08);

@@ -33,11 +33,6 @@ body {
   color: #EAEAEA;
 }
 
-.dark-mode body {
-  color: #E0E0E0;
-  background-color: #1F2937;
-}
-
 /* Globalne style dla elementów interaktywnych, np. linków */
 a {
   color: #007AFF;
@@ -867,6 +862,136 @@ textarea.is-error {
 }
 .dark-mode .main-footer {
   color: #EAEAEA;
+}
+
+/* --- Układ strony formularzy (login, register) --- */
+body.form-page {
+  background-image: none;
+  background-attachment: scroll;
+  background-position: initial;
+  background-size: initial;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  padding: 1.5rem;
+  background-color: #F2F2F7;
+}
+
+body.form-page.dark-mode {
+  background-color: #121212;
+}
+
+.auth-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 450px;
+}
+
+.auth-card {
+  border-radius: 2rem;
+  padding: 1.5rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.auth-card {
+  background-color: #FFFFFF;
+}
+.dark-mode .auth-card {
+  background-color: #1C1C1E;
+}
+.auth-card {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+.dark-mode .auth-card {
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+.auth-card h2 {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 1.53rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+}
+.auth-card h2 {
+  color: #1C1C1E;
+}
+.dark-mode .auth-card h2 {
+  color: #EAEAEA;
+}
+.auth-card h2 span {
+  font-weight: 900;
+  color: #007AFF;
+}
+.auth-card h2 a {
+  text-decoration: none;
+}
+.auth-card h2 a {
+  color: #1C1C1E;
+}
+.dark-mode .auth-card h2 a {
+  color: #EAEAEA;
+}
+.auth-card label {
+  font-family: "Lato", sans-serif;
+  font-size: 0.765rem;
+  margin-bottom: 0.25rem;
+  margin-left: 1rem;
+  display: block;
+}
+.auth-card label {
+  color: #1C1C1E;
+}
+.dark-mode .auth-card label {
+  color: #EAEAEA;
+}
+
+.auth-links {
+  margin-top: 2rem;
+  font-size: 0.765rem;
+  display: flex;
+  flex-direction: row;
+}
+.auth-links a {
+  color: #007AFF;
+  text-decoration: none;
+  margin-left: 0.5rem;
+}
+.auth-links a:hover {
+  text-decoration: none;
+}
+.auth-links a span {
+  padding-left: 0.5rem;
+}
+.auth-links .btn--secondary {
+  background-color: transparent !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+}
+.auth-links .btn--secondary {
+  color: #1C1C1E;
+}
+.dark-mode .auth-links .btn--secondary {
+  color: #EAEAEA;
+}
+.auth-links .btn--secondary {
+  border-color: #1C1C1E;
+}
+.dark-mode .auth-links .btn--secondary {
+  border-color: #EAEAEA;
+}
+.auth-links .btn--secondary:hover {
+  background-color: rgba(0, 0, 0, 0.1) !important;
+}
+.auth-links .btn--secondary:hover {
+  border-color: #007AFF;
+}
+.dark-mode .auth-links .btn--secondary:hover {
+  border-color: rgb(51, 148.6, 255);
 }
 
 /*# sourceMappingURL=style.css.map */

@@ -19,10 +19,10 @@
             </div>
             <nav class="main-nav">
                 <button id="theme-toggle" class="btn btn--outline btn--small">
-                    <i class="material-icons">brightness_2</i>
+                    <span>Zmień motyw</span>
                 </button>
-                <a href="#" class="btn btn--outline btn--small">Zaloguj się</a>
-                <a href="#" class="btn btn--small">Zarejestruj się</a>
+                <a href="login.php" class="btn btn--outline btn--small">Zaloguj się</a>
+                <a href="register.php" class="btn btn--small">Zarejestruj się</a>
             </nav>
         </div>
     </header>
