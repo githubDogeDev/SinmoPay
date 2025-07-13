@@ -1,0 +1,872 @@
+@charset "UTF-8";
+/* Reset CSS */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Style dla BODY */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Lato", sans-serif;
+  line-height: 1.6;
+  overflow-x: hidden;
+  background-image: url("../img/hero-bg.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+body {
+  color: #1C1C1E;
+}
+.dark-mode body {
+  color: #EAEAEA;
+}
+
+.dark-mode body {
+  color: #E0E0E0;
+  background-color: #1F2937;
+}
+
+/* Globalne style dla elementów interaktywnych, np. linków */
+a {
+  color: #007AFF;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+/* --- Przycisk (.btn) --- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 1rem;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease, color 0.2s ease;
+}
+.btn {
+  background-color: #007AFF;
+}
+.dark-mode .btn {
+  background-color: rgb(51, 148.6, 255);
+}
+.btn {
+  color: #FFFFFF;
+}
+.dark-mode .btn {
+  color: hsl(0, 0%, 101.7647058824%);
+}
+.btn:hover {
+  transform: translateY(-0.5px);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+.btn:active {
+  transform: translateY(0);
+  box-shadow: none;
+  opacity: 0.9;
+}
+.btn--secondary {
+  background-color: #999fa5;
+}
+.dark-mode .btn--secondary {
+  background-color: rgb(125.90625, 133.5, 141.09375);
+}
+.btn--secondary {
+  color: #FFFFFF;
+}
+.dark-mode .btn--secondary {
+  color: #EAEAEA;
+}
+.btn--outline {
+  background-color: transparent;
+}
+.dark-mode .btn--outline {
+  background-color: transparent;
+}
+.btn--outline {
+  color: #007AFF;
+}
+.dark-mode .btn--outline {
+  color: rgb(229.5, 241.7, 255);
+}
+.btn--outline {
+  border: 1px solid #007AFF;
+}
+.dark-mode .btn--outline {
+  border: 1px solid rgb(102, 175.2, 255);
+}
+.btn--outline:hover {
+  background-color: rgba(0, 122, 255, 0.08);
+}
+.dark-mode .btn--outline:hover {
+  background-color: rgba(51, 148.6, 255, 0.2);
+}
+.btn--outline-secondary {
+  background-color: transparent;
+}
+.dark-mode .btn--outline-secondary {
+  background-color: transparent;
+}
+.btn--outline-secondary {
+  color: #999fa5;
+}
+.dark-mode .btn--outline-secondary {
+  color: hsl(210, 6.25%, 107.3529411765%);
+}
+.btn--outline-secondary {
+  border: 1px solid #999fa5;
+}
+.dark-mode .btn--outline-secondary {
+  border: 1px solid rgb(207.1875, 210, 212.8125);
+}
+.btn--outline-secondary:hover {
+  background-color: rgba(153, 159, 165, 0.08);
+}
+.dark-mode .btn--outline-secondary:hover {
+  background-color: rgba(180.09375, 184.5, 188.90625, 0.2);
+}
+.btn--small {
+  padding: 0.2857142857rem 0.5rem;
+  font-size: 0.68rem;
+}
+.btn__icon {
+  margin-right: 0.25rem;
+}
+
+/* --- Karta (.card) --- */
+.card {
+  border-radius: 2rem;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.12), 0 3px 6px rgba(0, 0, 0, 0.08);
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+.card {
+  background-color: #FFFFFF;
+}
+.dark-mode .card {
+  background-color: #1C1C1E;
+}
+.card {
+  border: 1px solid #E0E0E0;
+}
+.dark-mode .card {
+  border: 1px solid #333333;
+}
+.card h1, .card h2, .card h3, .card h4, .card h5, .card h6 {
+  margin-bottom: 0.5rem;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-weight: 700;
+}
+.card h1, .card h2, .card h3, .card h4, .card h5, .card h6 {
+  color: #1C1C1E;
+}
+.dark-mode .card h1, .dark-mode .card h2, .dark-mode .card h3, .dark-mode .card h4, .dark-mode .card h5, .dark-mode .card h6 {
+  color: #EAEAEA;
+}
+.card p {
+  margin-bottom: 0.25rem;
+}
+.card p {
+  color: rgb(52.6206896552, 52.6206896552, 56.3793103448);
+}
+.dark-mode .card p {
+  color: rgb(208.5, 208.5, 208.5);
+}
+.card p:last-child {
+  margin-bottom: 0;
+}
+
+/* --- Pola Formularzy (Input, Textarea) --- */
+input[type=text],
+input[type=email],
+input[type=password],
+input[type=number],
+textarea {
+  width: 100%;
+  padding: 0.5rem 1rem;
+  font-family: "Lato", sans-serif;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  border-radius: 1rem;
+  border: 1px solid;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+input[type=text],
+input[type=email],
+input[type=password],
+input[type=number],
+textarea {
+  background-color: #FFFFFF;
+}
+.dark-mode input[type=text],
+.dark-mode input[type=email],
+.dark-mode input[type=password],
+.dark-mode input[type=number],
+.dark-mode textarea {
+  background-color: #2B3A4C;
+}
+input[type=text],
+input[type=email],
+input[type=password],
+input[type=number],
+textarea {
+  color: #1C1C1E;
+}
+.dark-mode input[type=text],
+.dark-mode input[type=email],
+.dark-mode input[type=password],
+.dark-mode input[type=number],
+.dark-mode textarea {
+  color: #EAEAEA;
+}
+input[type=text],
+input[type=email],
+input[type=password],
+input[type=number],
+textarea {
+  border-color: #E0E0E0;
+}
+.dark-mode input[type=text],
+.dark-mode input[type=email],
+.dark-mode input[type=password],
+.dark-mode input[type=number],
+.dark-mode textarea {
+  border-color: #333333;
+}
+input[type=text]:focus,
+input[type=email]:focus,
+input[type=password]:focus,
+input[type=number]:focus,
+textarea:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.2);
+}
+input[type=text]:focus,
+input[type=email]:focus,
+input[type=password]:focus,
+input[type=number]:focus,
+textarea:focus {
+  border-color: #007AFF;
+}
+.dark-mode input[type=text]:focus,
+.dark-mode input[type=email]:focus,
+.dark-mode input[type=password]:focus,
+.dark-mode input[type=number]:focus,
+.dark-mode textarea:focus {
+  border-color: rgb(51, 148.6, 255);
+}
+input[type=text]::placeholder,
+input[type=email]::placeholder,
+input[type=password]::placeholder,
+input[type=number]::placeholder,
+textarea::placeholder {
+  opacity: 1;
+}
+input[type=text]::placeholder,
+input[type=email]::placeholder,
+input[type=password]::placeholder,
+input[type=number]::placeholder,
+textarea::placeholder {
+  color: rgb(101.8620689655, 101.8620689655, 109.1379310345);
+}
+.dark-mode input[type=text]::placeholder,
+.dark-mode input[type=email]::placeholder,
+.dark-mode input[type=password]::placeholder,
+.dark-mode input[type=number]::placeholder,
+.dark-mode textarea::placeholder {
+  color: rgb(157.5, 157.5, 157.5);
+}
+input[type=text]:-webkit-autofill, input[type=text]:-webkit-autofill:hover, input[type=text]:-webkit-autofill:focus, input[type=text]:-webkit-autofill:active,
+input[type=email]:-webkit-autofill,
+input[type=email]:-webkit-autofill:hover,
+input[type=email]:-webkit-autofill:focus,
+input[type=email]:-webkit-autofill:active,
+input[type=password]:-webkit-autofill,
+input[type=password]:-webkit-autofill:hover,
+input[type=password]:-webkit-autofill:focus,
+input[type=password]:-webkit-autofill:active,
+input[type=number]:-webkit-autofill,
+input[type=number]:-webkit-autofill:hover,
+input[type=number]:-webkit-autofill:focus,
+input[type=number]:-webkit-autofill:active,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+textarea:-webkit-autofill:active {
+  transition: background-color 9999s ease-in-out 0s, color 9999s ease-in-out 0s;
+  background-color: transparent !important;
+  box-shadow: 0 0 0px 1000px #FFFFFF inset !important;
+}
+body.dark-mode input[type=text]:-webkit-autofill, body.dark-mode input[type=text]:-webkit-autofill:hover, body.dark-mode input[type=text]:-webkit-autofill:focus, body.dark-mode input[type=text]:-webkit-autofill:active,
+body.dark-mode input[type=email]:-webkit-autofill,
+body.dark-mode input[type=email]:-webkit-autofill:hover,
+body.dark-mode input[type=email]:-webkit-autofill:focus,
+body.dark-mode input[type=email]:-webkit-autofill:active,
+body.dark-mode input[type=password]:-webkit-autofill,
+body.dark-mode input[type=password]:-webkit-autofill:hover,
+body.dark-mode input[type=password]:-webkit-autofill:focus,
+body.dark-mode input[type=password]:-webkit-autofill:active,
+body.dark-mode input[type=number]:-webkit-autofill,
+body.dark-mode input[type=number]:-webkit-autofill:hover,
+body.dark-mode input[type=number]:-webkit-autofill:focus,
+body.dark-mode input[type=number]:-webkit-autofill:active,
+body.dark-mode textarea:-webkit-autofill,
+body.dark-mode textarea:-webkit-autofill:hover,
+body.dark-mode textarea:-webkit-autofill:focus,
+body.dark-mode textarea:-webkit-autofill:active {
+  box-shadow: 0 0 0px 1000px #2B3A4C inset !important;
+  color: #EAEAEA !important;
+}
+
+textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+/* --- Etykiety (Label) --- */
+label {
+  display: block;
+  margin-bottom: 0.25rem;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 0.765rem;
+  font-weight: 600;
+}
+label {
+  color: #1C1C1E;
+}
+.dark-mode label {
+  color: #EAEAEA;
+}
+
+/* --- Grupa Formularzy (Form Group) --- */
+.form-group {
+  margin-bottom: 1rem;
+}
+
+/* --- Komunikaty o błędach (opcjonalnie, do późniejszego użycia) --- */
+.form-error-message {
+  color: #DC3545;
+  font-size: 0.7225rem;
+  margin-top: 0.25rem;
+}
+
+input.is-error,
+textarea.is-error {
+  border-color: #DC3545;
+  box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.2);
+}
+
+/* --- Checkbox --- */
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  cursor: pointer;
+  position: relative;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+.checkbox-container input[type=checkbox] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+.checkbox-container input[type=checkbox] + .checkmark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.25rem;
+  height: 1.25rem;
+  border-radius: 0.5rem;
+  border: 1px solid;
+  margin-right: 0.5rem;
+  position: relative;
+  flex-shrink: 0;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+.checkbox-container input[type=checkbox] + .checkmark {
+  background-color: #FFFFFF;
+}
+.dark-mode .checkbox-container input[type=checkbox] + .checkmark {
+  background-color: #1C1C1E;
+}
+.checkbox-container input[type=checkbox] + .checkmark {
+  border-color: #E0E0E0;
+}
+.dark-mode .checkbox-container input[type=checkbox] + .checkmark {
+  border-color: #333333;
+}
+.checkbox-container input[type=checkbox] + .checkmark .material-icons {
+  font-size: 1rem;
+  line-height: 1;
+  display: none;
+}
+.checkbox-container input[type=checkbox] + .checkmark .material-icons {
+  color: #FFFFFF;
+}
+.dark-mode .checkbox-container input[type=checkbox] + .checkmark .material-icons {
+  color: #1C1C1E;
+}
+.checkbox-container input[type=checkbox]:checked + .checkmark {
+  border-color: transparent;
+}
+.checkbox-container input[type=checkbox]:checked + .checkmark {
+  background-color: #007AFF;
+}
+.dark-mode .checkbox-container input[type=checkbox]:checked + .checkmark {
+  background-color: rgb(51, 148.6, 255);
+}
+.checkbox-container input[type=checkbox]:checked + .checkmark .material-icons {
+  display: block;
+}
+.checkbox-container input[type=checkbox]:focus + .checkmark {
+  box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.2);
+}
+.checkbox-container .checkbox-label {
+  font-family: "Lato", sans-serif;
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+.checkbox-container .checkbox-label {
+  color: #1C1C1E;
+}
+.dark-mode .checkbox-container .checkbox-label {
+  color: #EAEAEA;
+}
+
+/* --- Radio Button --- */
+.radio-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  cursor: pointer;
+  position: relative;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+.radio-container input[type=radio] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+.radio-container input[type=radio] + .radiomark {
+  display: inline-block;
+  width: 1.25rem;
+  height: 1.25rem;
+  border-radius: 50%;
+  border: 1px solid;
+  margin-right: 0.5rem;
+  position: relative;
+  flex-shrink: 0;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+.radio-container input[type=radio] + .radiomark {
+  border-color: #E0E0E0;
+}
+.dark-mode .radio-container input[type=radio] + .radiomark {
+  border-color: #333333;
+}
+.radio-container input[type=radio] + .radiomark {
+  background-color: #FFFFFF;
+}
+.dark-mode .radio-container input[type=radio] + .radiomark {
+  background-color: #1C1C1E;
+}
+.radio-container input[type=radio] + .radiomark::after {
+  content: "";
+  position: absolute;
+  display: none;
+  top: 50%;
+  left: 50%;
+  width: 0.625rem;
+  height: 0.625rem;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+.radio-container input[type=radio] + .radiomark::after {
+  background-color: hsl(0, 0%, 131.7647058824%);
+}
+.dark-mode .radio-container input[type=radio] + .radiomark::after {
+  background-color: #1C1C1E;
+}
+.radio-container input[type=radio]:checked + .radiomark {
+  border-color: transparent;
+}
+.radio-container input[type=radio]:checked + .radiomark {
+  background-color: #007AFF;
+}
+.dark-mode .radio-container input[type=radio]:checked + .radiomark {
+  background-color: rgb(51, 148.6, 255);
+}
+.radio-container input[type=radio]:checked + .radiomark::after {
+  display: block;
+}
+.radio-container input[type=radio]:focus + .radiomark {
+  box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.2);
+}
+.radio-container .radio-label {
+  font-family: "Lato", sans-serif;
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+.radio-container .radio-label {
+  color: #1C1C1E;
+}
+.dark-mode .radio-container .radio-label {
+  color: #EAEAEA;
+}
+
+/* --- Custom Toggle Switch (iOS Style) --- */
+.switch-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  cursor: pointer;
+  position: relative;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+.switch-container input[type=checkbox] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+.switch-container input[type=checkbox] + .switch-slider {
+  width: 2.75rem;
+  height: 1.5rem;
+  border-radius: 9999px;
+  position: relative;
+  flex-shrink: 0;
+  transition: background-color 0.2s ease;
+}
+.switch-container input[type=checkbox] + .switch-slider {
+  background-color: #E0E0E0;
+}
+.dark-mode .switch-container input[type=checkbox] + .switch-slider {
+  background-color: #333333;
+}
+.switch-container input[type=checkbox] + .switch-slider::before {
+  content: "";
+  position: absolute;
+  height: 1.25rem;
+  width: 1.25rem;
+  left: 0.125rem;
+  bottom: 0.125rem;
+  border-radius: 9999px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+.switch-container input[type=checkbox] + .switch-slider::before {
+  background-color: #FFFFFF;
+}
+.dark-mode .switch-container input[type=checkbox] + .switch-slider::before {
+  background-color: #1C1C1E;
+}
+.switch-container input[type=checkbox]:checked + .switch-slider {
+  background-color: #007AFF;
+}
+.dark-mode .switch-container input[type=checkbox]:checked + .switch-slider {
+  background-color: rgb(51, 148.6, 255);
+}
+.switch-container input[type=checkbox]:checked + .switch-slider::before {
+  transform: translateX(1.25rem);
+}
+.switch-container input[type=checkbox]:focus + .switch-slider {
+  box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.2);
+}
+.switch-container .switch-label {
+  font-family: "Lato", sans-serif;
+  font-size: 0.85rem;
+  margin-left: 0.5rem;
+  line-height: 1.5;
+}
+.switch-container .switch-label {
+  color: #1C1C1E;
+}
+.dark-mode .switch-container .switch-label {
+  color: #EAEAEA;
+}
+
+/* --- Ogólny układ strony --- */
+.page-content {
+  flex-grow: 1;
+}
+
+/* --- Nagłówek (Header) --- */
+.main-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  padding: 1rem 1.5rem;
+}
+.main-header {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+.dark-mode .main-header {
+  background-color: rgba(31, 47, 70, 0.5);
+}
+.main-header {
+  backdrop-filter: blur(12px) saturate(1.8);
+}
+.dark-mode .main-header {
+  backdrop-filter: blur(30px) saturate(2);
+}
+@supports not (backdrop-filter: blur(1px)) {
+  .main-header {
+    background-color: rgba(255, 255, 255, 0.8);
+  }
+  .dark-mode .main-header {
+    background-color: rgba(20, 34, 53, 0.9);
+  }
+}
+.main-header {
+  border-bottom: 1px solid rgba(224, 224, 224, 0.3);
+}
+.dark-mode .main-header {
+  border-bottom: none;
+}
+.main-header {
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+.dark-mode .main-header {
+  box-shadow: none;
+}
+.main-header .header-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.main-header .logo h1 {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 1.275rem;
+  font-weight: 700;
+  margin: 0;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+.main-header .logo h1 {
+  color: #1C1C1E;
+}
+.dark-mode .main-header .logo h1 {
+  color: #EAEAEA;
+}
+.main-header .main-nav {
+  display: flex;
+  gap: 0.5rem;
+}
+.main-header .main-nav .btn {
+  background-color: transparent !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+}
+.main-header .main-nav .btn {
+  color: #1C1C1E;
+}
+.dark-mode .main-header .main-nav .btn {
+  color: #EAEAEA;
+}
+.main-header .main-nav .btn:hover {
+  background-color: rgba(0, 0, 0, 0.1) !important;
+}
+.main-header .main-nav .btn--outline {
+  border-color: #1C1C1E;
+}
+.dark-mode .main-header .main-nav .btn--outline {
+  border-color: #EAEAEA;
+}
+.main-header .main-nav .btn--outline:hover {
+  background-color: transparent !important;
+}
+.main-header .main-nav .btn--outline:hover {
+  border-color: #007AFF;
+}
+.dark-mode .main-header .main-nav .btn--outline:hover {
+  border-color: rgb(51, 148.6, 255);
+}
+
+/* --- Sekcja Hero --- */
+.hero-section {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: calc(80px + 1.5rem);
+  padding-bottom: 3rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  position: relative;
+  text-align: center;
+}
+.hero-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+.hero-section::before {
+  background-color: rgba(254, 254, 254, 0.259);
+}
+.dark-mode .hero-section::before {
+  background-color: rgba(0, 0, 0, 0.418);
+}
+.hero-section .hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 700px;
+  margin: 7.5rem 0 auto 0;
+}
+.hero-section .hero-content h2 {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 3.4rem;
+  font-weight: 900;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
+}
+.hero-section .hero-content h2 {
+  color: #1C1C1E;
+}
+.dark-mode .hero-section .hero-content h2 {
+  color: #EAEAEA;
+}
+.hero-section .hero-content p {
+  font-family: "Lato", sans-serif;
+  font-size: 1.02rem;
+  margin-bottom: 1.5rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+}
+.hero-section .hero-content p {
+  color: #1C1C1E;
+}
+.dark-mode .hero-section .hero-content p {
+  color: #EAEAEA;
+}
+.hero-section .hero-content .btn--large {
+  padding: 1rem 2.25rem;
+  font-size: 0.935rem;
+  border-radius: 9999px;
+}
+.hero-section .hero-content .btn--large {
+  color: #FFFFFF;
+}
+.dark-mode .hero-section .hero-content .btn--large {
+  color: #EAEAEA;
+}
+.hero-section .hero-content .btn--large {
+  background-color: #007AFF;
+}
+.dark-mode .hero-section .hero-content .btn--large {
+  background-color: rgb(51, 148.6, 255);
+}
+
+/* --- Sekcje Placeholder (do testowania scrollowania) --- */
+.placeholder-section {
+  min-height: 50vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1.5rem;
+  text-align: center;
+}
+.placeholder-section {
+  background-color: #F2F2F7;
+}
+.dark-mode .placeholder-section {
+  background-color: #121212;
+}
+.placeholder-section .container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+.placeholder-section .container h3 {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 1.7rem;
+  margin-bottom: 0.5rem;
+}
+.placeholder-section .container h3 {
+  color: #1C1C1E;
+}
+.dark-mode .placeholder-section .container h3 {
+  color: #EAEAEA;
+}
+.placeholder-section .container p {
+  font-family: "Lato", sans-serif;
+  font-size: 0.85rem;
+}
+.placeholder-section .container p {
+  color: #1C1C1E;
+}
+.dark-mode .placeholder-section .container p {
+  color: #EAEAEA;
+}
+
+/* --- Stopka (Footer) --- */
+.main-footer {
+  padding: 1rem 1.5rem;
+  text-align: center;
+  font-size: 0.765rem;
+  margin-top: auto;
+}
+.main-footer {
+  background-color: #FFFFFF;
+}
+.dark-mode .main-footer {
+  background-color: #1C1C1E;
+}
+.main-footer {
+  border-top: 1px solid #E0E0E0;
+}
+.dark-mode .main-footer {
+  border-top: 1px solid #333333;
+}
+.main-footer {
+  color: #1C1C1E;
+}
+.dark-mode .main-footer {
+  color: #EAEAEA;
+}
+
+/*# sourceMappingURL=style.css.map */

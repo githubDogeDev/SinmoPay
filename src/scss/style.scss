@@ -1,0 +1,5 @@
+@use 'variables';
+@use 'mixins';
+@use 'base';
+@use 'components'; // Upewnij się, że to jest tutaj
+@use 'layout'; // Ten plik przyda się później dla globalnego układu

@@ -1,0 +1,10 @@
+// Mixin dla trybu jasnego/ciemnego
+// Użycie: @include theme-aware(color, $text-color-light, $text-color-dark);
+@mixin theme-aware($property, $light-value, $dark-value) {
+    & { // Zawijamy deklarację w '& {}'
+        #{$property}: $light-value;
+    }
+    .dark-mode & {
+        #{$property}: $dark-value;
+    }
+}

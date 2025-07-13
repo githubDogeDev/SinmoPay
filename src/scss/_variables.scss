@@ -1,0 +1,67 @@
+@use "sass:color";
+// Kolory (możesz dostosować te wartości, aby uzyskać pożądany efekt)
+// Propozycje inspirowane minimalistycznym designem:
+
+// Główne kolory akcentu (np. dla głównych przycisków akcji)
+$primary-color: #007AFF; // Klasyczny błękit Apple (możesz spróbować też #0A84FF dla ciemniejszego odcienia)
+$secondary-color: #999fa5; // Stonowany szary dla przycisków pomocniczych/neutralnych
+
+// Kolory tekstu
+$text-color-light: #1C1C1E; // Bardzo ciemny szary dla trybu jasnego (prawie czarny)
+$text-color-dark: #EAEAEA; // Jasny szary dla trybu ciemnego (prawie biały)
+
+// Kolory tła
+$background-light: #F2F2F7; // Bardzo jasny, prawie biały szary dla tła w trybie jasnym
+$background-dark: #121212; // Ciemny, prawie czarny dla tła w trybie ciemnym
+
+// Kolory tła kart/elementów "pływających"
+$card-background-light: #FFFFFF; // Czysta biel dla kart w trybie jasnym
+$card-background-dark: #1C1C1E; // Ciemny szary dla kart w trybie ciemnym
+
+// Kolory ramek/separatorów
+$border-color-light: #E0E0E0; // Delikatna ramka w trybie jasnym
+$border-color-dark: #333333; // Ciemniejsza ramka w trybie ciemnym
+
+// Kolory stanów (opcjonalnie, do dodania później dla sukcesu/błędu/ostrzeżenia)
+// $success-color: #28A745;
+// $error-color: #DC3545;
+// $warning-color: #FFC107;
+
+// Zaokrąglenia (już masz, ale możesz je dostosować)
+$border-radius-small: 0.5rem;
+$border-radius-medium: 1rem;
+$border-radius-large: 2rem;
+$border-radius-pill: 9999px;
+
+// Cienie (możesz dostosować stopień rozmycia i krycia)
+$shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+$shadow-md: 0 3px 6px rgba(0, 0, 0, 0.12), 0 3px 6px rgba(0, 0, 0, 0.08);
+$shadow-lg: 0 10px 20px rgba(0, 0, 0, 0.15), 0 3px 6px rgba(0, 0, 0, 0.1);
+
+// Typografia (jeśli zmienisz czcionkę, zaktualizuj też w HTML)
+$font-family-heading: 'Plus Jakarta Sans', sans-serif;
+$font-family-base: 'Lato', sans-serif; // Upewnij się, że masz tę czcionkę w HTML
+
+$font-size-base: 0.85rem;
+$font-weight-normal: 400;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+$font-weight-black: 900;
+
+// Odstępy (już masz, ale upewnij się, że są spójne)
+$spacing-unit: 0.5rem;
+$padding-sm: $spacing-unit;
+$padding-md: $spacing-unit * 2;
+$padding-lg: $spacing-unit * 3;
+
+// Kolory stanów formularzy (nowe, jeśli chcesz)
+$input-border-color-light: $border-color-light; // Domyślna ramka jak w kartach
+$input-border-color-dark: $border-color-dark;
+
+$input-focus-border-color-light: $primary-color; // Ramka przy focusie w trybie jasnym (np. primary-color)
+$input-focus-border-color-dark: color.adjust($primary-color, $lightness: 10%); // Ramka przy focusie w trybie ciemnym
+
+$input-background-light: #FFFFFF; // Tło pól w trybie jasnym (np. białe)
+$input-background-dark: #2B3A4C; // Tło pól w trybie ciemnym
+
+$hero-background-image: url('../img/hero-bg.jpg'); // Ścieżka względem public/css/style.css

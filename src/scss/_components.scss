@@ -1,0 +1,405 @@
+@use 'variables';
+@use 'mixins';
+@use 'sass:color';
+@use 'sass:math';
+
+/* --- Przycisk (.btn) --- */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: variables.$padding-sm variables.$padding-md; // Odstępy wewnętrzne
+    border: none;
+    border-radius: variables.$border-radius-medium; // Użyj zmiennej dla zaokrągleń
+    font-family: variables.$font-family-heading; // Użyj zmiennej dla czcionki
+    font-size: variables.$font-size-base;
+    font-weight: variables.$font-weight-semibold;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease, color 0.2s ease; // Dodaj color do przejścia
+
+    // Podstawowy kolor tła i tekstu dla przycisku podstawowego
+    @include mixins.theme-aware(background-color, variables.$primary-color, color.adjust(variables.$primary-color, $lightness: 10%));
+    @include mixins.theme-aware(color, variables.$card-background-light, color.adjust(variables.$text-color-dark, $lightness: 10%)); // Biały/jasny tekst na przycisku
+
+    &:hover {
+        transform: translateY(-0.5px); // Lekkie uniesienie przy najechaniu
+        box-shadow: variables.$shadow-sm; // Delikatny cień
+    }
+
+    &:active {
+        transform: translateY(0); // Powrót do pierwotnej pozycji po kliknięciu
+        box-shadow: none;
+        opacity: 0.9; // Delikatne przyciemnienie po kliknięciu
+    }
+
+    // Modyfikator dla przycisku wtórnego
+    &--secondary {
+        @include mixins.theme-aware(background-color, variables.$secondary-color, color.adjust(variables.$secondary-color, $lightness: -10%));
+        @include mixins.theme-aware(color, variables.$card-background-light, variables.$text-color-dark); // Upewnij się, że tekst jest czytelny
+    }
+
+    // Modyfikator dla przycisku "outline" (bez wypełnienia)
+    &--outline {
+        @include mixins.theme-aware(background-color, transparent, transparent); // Przezroczyste tło
+        @include mixins.theme-aware(color, variables.$primary-color, color.adjust(variables.$primary-color, $lightness: 45%));
+        @include mixins.theme-aware(border, 1px solid variables.$primary-color, 1px solid color.adjust(variables.$primary-color, $lightness: 20%));
+
+        &:hover {
+            @include mixins.theme-aware(background-color, rgba(variables.$primary-color, 0.08), rgba(color.adjust(variables.$primary-color, $lightness: 10%), 0.2)); // Trochę mniej przezroczystości
+        }
+    }
+
+    // Modyfikator dla przycisku "outline-secondary" (bez wypełnienia, wtórny kolor)
+    &--outline-secondary {
+        @include mixins.theme-aware(background-color, transparent, transparent); // Przezroczyste tło
+        @include mixins.theme-aware(color, variables.$secondary-color, color.adjust(variables.$secondary-color, $lightness: 45%));
+        @include mixins.theme-aware(border, 1px solid variables.$secondary-color, 1px solid color.adjust(variables.$secondary-color, $lightness: 20%));
+
+        &:hover {
+            @include mixins.theme-aware(background-color, rgba(variables.$secondary-color, 0.08), rgba(color.adjust(variables.$secondary-color, $lightness: 10%), 0.2)); // Trochę mniej przezroczystości
+        }
+    }
+
+    // Modyfikator dla mniejszego przycisku
+    &--small {
+        padding: math.div(variables.$spacing-unit, 1.75) variables.$spacing-unit; // Mniejszy padding
+        font-size: variables.$font-size-base * 0.8; // Nieco mniejszy font
+    }
+
+    // Modyfikator dla przycisku z ikoną (jeśli będziesz używać)
+    &__icon {
+        margin-right: math.div(variables.$spacing-unit, 2); // Odstęp między ikoną a tekstem
+    }
+}
+
+
+/* --- Karta (.card) --- */
+.card {
+    border-radius: variables.$border-radius-large;
+    box-shadow: variables.$shadow-md; // Użyj $shadow-md dla kart
+    padding: variables.$padding-lg;
+    margin-bottom: variables.$padding-lg;
+    @include mixins.theme-aware(background-color, variables.$card-background-light, variables.$card-background-dark);
+    @include mixins.theme-aware(border, 1px solid variables.$border-color-light, 1px solid variables.$border-color-dark);
+
+    h1, h2, h3, h4, h5, h6 {
+        margin-bottom: variables.$spacing-unit;
+        font-family: variables.$font-family-heading; // Użyj zmiennej dla czcionki nagłówków
+        font-weight: variables.$font-weight-bold;
+        @include mixins.theme-aware(color, variables.$text-color-light, variables.$text-color-dark);
+    }
+
+    p {
+        margin-bottom: math.div(variables.$spacing-unit, 2);
+        @include mixins.theme-aware(color, color.adjust(variables.$text-color-light, $lightness: 10%), color.adjust(variables.$text-color-dark, $lightness: -10%)); // Lżejszy tekst w jasnym, ciemniejszy w ciemnym
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+}
+
+/* --- Pola Formularzy (Input, Textarea) --- */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"], // Dodajemy typ number, jeśli używasz
+textarea {
+    width: 100%; // Pełna szerokość kontenera
+    padding: variables.$padding-sm variables.$padding-md; // Spójne odstępy
+    font-family: variables.$font-family-base; // Czcionka bazowa
+    font-size: variables.$font-size-base;
+    line-height: 1.5; // Dobra wysokość linii
+    border-radius: variables.$border-radius-medium; // Zaokrąglone rogi (jak przyciski)
+    border: 1px solid; // Domyślna ramka (później zmienimy jej kolor)
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease; // Płynne przejścia   
+
+    // Kolory tła i ramek zależne od motywu
+    @include mixins.theme-aware(background-color, variables.$input-background-light, variables.$input-background-dark);
+    @include mixins.theme-aware(color, variables.$text-color-light, variables.$text-color-dark);
+    @include mixins.theme-aware(border-color, variables.$input-border-color-light, variables.$input-border-color-dark);
+
+    &:focus {
+        outline: none; // Usuwamy domyślny focus przeglądarki
+        box-shadow: 0 0 0 3px rgba(variables.$primary-color, 0.2); // Delikatny cień/obrys przy focusie
+        @include mixins.theme-aware(border-color, variables.$input-focus-border-color-light, variables.$input-focus-border-color-dark); // Kolor ramki przy focusie
+    }
+
+    // Placeholder styling (niektóre przeglądarki mogą wymagać prefixów)
+    &::placeholder {
+        opacity: 1; // Zapewnia, że placeholder jest widoczny we wszystkich przeglądarkach
+        @include mixins.theme-aware(color, color.adjust(variables.$text-color-light, $lightness: 30%), color.adjust(variables.$text-color-dark, $lightness: -30%)); // Jasniejszy tekst placeholderu
+    }
+
+    // Style dla autouzupełniania przeglądarki
+    &:-webkit-autofill,
+    &:-webkit-autofill:hover,
+    &:-webkit-autofill:focus,
+    &:-webkit-autofill:active {
+        // Ustawienie transition, aby tło autouzupełniania nie było widoczne
+        transition: background-color 9999s ease-in-out 0s, color 9999s ease-in-out 0s; // Bardzo długi czas przejścia
+        
+        // Zastosowanie box-shadow zamiast background-color
+        // Musimy tutaj użyć konkretnych kolorów, nie mixinów,
+        // bo :;-webkit-autofill ma bardzo wysoką specyficzność i wymaga specyficznych wartości.
+        // Pamiętaj, aby kolory te były spójne z twoimi zmiennymi $input-background-light i $input-background-dark
+
+        // Tryb jasny:
+        background-color: transparent !important; // Czasem pomaga zresetować tło
+        box-shadow: 0 0 0px 1000px variables.$input-background-light inset !important; // Przykrywamy domyślne tło jasnym kolorem
+
+        // Tryb ciemny (nadpisuje poprzedni w zależności od klasy dark-mode na body):
+        body.dark-mode & {
+            box-shadow: 0 0 0px 1000px variables.$input-background-dark inset !important; // Przykrywamy domyślne tło ciemnym kolorem
+            color: variables.$text-color-dark !important; // Upewnij się, że tekst jest widoczny
+        }
+    }
+}
+
+
+textarea {
+    min-height: 100px; // Minimalna wysokość dla textarea
+    resize: vertical; // Pozwala tylko na pionową zmianę rozmiaru
+}
+
+/* --- Etykiety (Label) --- */
+label {
+    display: block; // Każda etykieta w nowej linii
+    margin-bottom: math.div(variables.$spacing-unit, 2); // Mały odstęp poniżej etykiety
+    font-family: variables.$font-family-heading; // Możesz użyć czcionki nagłówkowej dla etykiet
+    font-size: variables.$font-size-base * 0.9; // Nieco mniejszy rozmiar
+    font-weight: variables.$font-weight-semibold; // Pogrubiony tekst
+    @include mixins.theme-aware(color, variables.$text-color-light, variables.$text-color-dark);
+}
+
+/* --- Grupa Formularzy (Form Group) --- */
+// Użyj tej klasy do grupowania etykiety i pola, aby łatwo kontrolować odstępy
+.form-group {
+    margin-bottom: variables.$padding-md; // Odstęp między grupami pól
+}
+
+/* --- Komunikaty o błędach (opcjonalnie, do późniejszego użycia) --- */
+.form-error-message {
+    color: #DC3545; // Czerwony kolor dla błędów
+    font-size: variables.$font-size-base * 0.85;
+    margin-top: math.div(variables.$spacing-unit, 2);
+}
+
+// Styl dla pól z błędem
+input.is-error,
+textarea.is-error {
+    border-color: #DC3545; // Czerwona ramka dla błędu
+    box-shadow: 0 0 0 3px rgba(#DC3545, 0.2);
+}
+
+/* --- Checkbox --- */
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: variables.$spacing-unit;
+    cursor: pointer;
+    position: relative;
+    user-select: none;          // Zapobiega zaznaczaniu tekstu
+    -webkit-user-select: none;  // Dla przeglądarek WebKit (Chrome, Safari)
+    -moz-user-select: none;     // Dla Mozilli (Firefox)
+    -ms-user-select: none;      // Dla Internet Explorera/Edge (starsze)
+
+    input[type="checkbox"] {
+        // Ukrywamy domyślny checkbox, ale zachowujemy jego funkcjonalność
+        position: absolute;
+        opacity: 0;
+        width: 0;
+        height: 0;
+        pointer-events: none;
+
+        // Styl wizualny dla niestandardowego kwadratu checkboxa
+        + .checkmark {
+            display: inline-flex; // Zmieniamy na flex, aby wyśrodkować ikonę
+            align-items: center;
+            justify-content: center;
+            width: variables.$spacing-unit * 2.5; // Rozmiar kwadratu (np. 20px = 2.5 * 8px)
+            height: variables.$spacing-unit * 2.5; // Używamy spacing-unit
+            border-radius: variables.$border-radius-small;
+            border: 1px solid;
+            margin-right: variables.$spacing-unit;
+            position: relative;
+            flex-shrink: 0;
+            
+            transition: background-color 0.2s ease, border-color 0.2s ease;
+            
+            @include mixins.theme-aware(background-color, variables.$card-background-light, variables.$card-background-dark);
+            @include mixins.theme-aware(border-color, variables.$border-color-light, variables.$border-color-dark);
+            // Styl dla IKONY wewnątrz kwadratu
+            .material-icons { // Celujemy w element <i> z ikoną
+                font-size: variables.$spacing-unit * 2; // Rozmiar ikony (np. 16px = 2 * 8px)
+                line-height: 1; // Ważne dla centrowania
+                display: none; // Domyślnie ukryty
+                @include mixins.theme-aware(color, variables.$card-background-light, variables.$text-color-light); // Kolor ikony (biały/jasny)
+            }
+        }
+
+        // Gdy checkbox jest zaznaczony
+        &:checked + .checkmark {
+            border-color: transparent; // Usuwamy ramkę po zaznaczeniu
+            @include mixins.theme-aware(background-color, variables.$primary-color, color.adjust(variables.$primary-color, $lightness: 10%));
+            .material-icons { // Pokazujemy ikonę
+                display: block;
+            }
+        }
+
+        // Focus state (ważne dla dostępności!)
+        &:focus + .checkmark {
+            box-shadow: 0 0 0 3px rgba(variables.$primary-color, 0.2);
+        }
+    }
+
+    .checkbox-label {
+        font-family: variables.$font-family-base;
+        font-size: variables.$font-size-base;
+        line-height: 1.5;
+        @include mixins.theme-aware(color, variables.$text-color-light, variables.$text-color-dark);
+    }
+}
+
+// ... (istniejące style)
+
+/* --- Radio Button --- */
+.radio-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: variables.$spacing-unit;
+    cursor: pointer;
+    position: relative;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+
+    input[type="radio"] {
+        position: absolute;
+        opacity: 0;
+        width: 0;
+        height: 0;
+        pointer-events: none;
+
+        + .radiomark {
+            display: inline-block;
+            width: variables.$spacing-unit * 2.5; // Rozmiar okręgu (np. 20px = 2.5 * 8px)
+            height: variables.$spacing-unit * 2.5; // Używamy spacing-unit
+            border-radius: 50%; // Okrągły kształt
+            border: 1px solid;
+            margin-right: variables.$spacing-unit;
+            position: relative;
+            flex-shrink: 0;
+            
+            transition: background-color 0.2s ease, border-color 0.2s ease;
+            
+            @include mixins.theme-aware(border-color, variables.$border-color-light, variables.$border-color-dark);
+            @include mixins.theme-aware(background-color, variables.$card-background-light, variables.$card-background-dark); // Tło w trybie domyślnym
+
+            &::after {
+                content: '';
+                position: absolute;
+                display: none;
+                top: 50%;
+                left: 50%;
+                width: variables.$spacing-unit * 1.25; // Rozmiar wewnętrznej kropki (np. 10px = 1.25 * 8px)
+                height: variables.$spacing-unit * 1.25; // Używamy spacing-unit
+                border-radius: 50%;
+                // Kolor kropki - ZMIANA NA TEXT-COLOR-LIGHT DLA OBU TRYBÓW, GDY TŁO BĘDZIE PRIMARY
+                transform: translate(-50%, -50%); // Centrowanie kropki
+                @include mixins.theme-aware(background-color, color.adjust(variables.$text-color-dark, $lightness: 40%), variables.$text-color-light); // Kolor kropki (biały/jasny)
+            }
+        }
+
+        // Gdy radio button jest zaznaczony
+        &:checked + .radiomark {
+            // TŁO PO ZAZNACZENIU - ZMIANA NA PRIMARY-COLOR
+            border-color: transparent; // Usuwamy ramkę po zaznaczeniu
+            @include mixins.theme-aware(background-color, variables.$primary-color, color.adjust(variables.$primary-color, $lightness: 10%));
+            &::after {
+                display: block; // Pokazujemy kropkę
+            }
+        }
+
+        &:focus + .radiomark {
+            box-shadow: 0 0 0 3px rgba(variables.$primary-color, 0.2);
+        }
+    }
+
+    .radio-label {
+        font-family: variables.$font-family-base;
+        font-size: variables.$font-size-base;
+        line-height: 1.5;
+        @include mixins.theme-aware(color, variables.$text-color-light, variables.$text-color-dark);
+    }
+}
+
+/* --- Custom Toggle Switch (iOS Style) --- */
+.switch-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: variables.$spacing-unit;
+    cursor: pointer;
+    position: relative;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+
+    input[type="checkbox"] { // Używamy checkboxa jako bazy
+        position: absolute;
+        opacity: 0;
+        width: 0;
+        height: 0;
+        pointer-events: none;
+
+        + .switch-slider {
+            // Szerokość i wysokość przełącznika - oparte na spacing-unit
+            width: variables.$spacing-unit * 5.5; // np. 44px (5.5 * 8px)
+            height: variables.$spacing-unit * 3;  // np. 24px (3 * 8px)
+            border-radius: variables.$border-radius-pill;
+            position: relative;
+            flex-shrink: 0;
+            transition: background-color 0.2s ease;
+            
+            @include mixins.theme-aware(background-color, variables.$border-color-light, variables.$border-color-dark);
+            // "Kółko" (thumb) przełącznika
+            &::before {
+                content: '';
+                position: absolute;
+                // Rozmiar kółka - oparte na spacing-unit
+                height: variables.$spacing-unit * 2.5; // np. 20px (2.5 * 8px)
+                width: variables.$spacing-unit * 2.5;  // np. 20px (2.5 * 8px)
+                left: variables.$spacing-unit * 0.25; // Początkowa pozycja kółka (np. 2px)
+                bottom: variables.$spacing-unit * 0.25; // np. 2px
+                border-radius: variables.$border-radius-pill;
+                box-shadow: variables.$shadow-sm;
+                transition: transform 0.2s ease, background-color 0.2s ease;
+                @include mixins.theme-aware(background-color, variables.$card-background-light, variables.$text-color-light);
+            }
+        }
+
+        // Gdy przełącznik jest włączony (checked)
+        &:checked + .switch-slider {
+            @include mixins.theme-aware(background-color, variables.$primary-color, color.adjust(variables.$primary-color, $lightness: 10%));
+            &::before {
+                // Przesunięcie kółka w prawo - oparte na spacing-unit
+                transform: translateX(variables.$spacing-unit * 2.5); // np. 20px (2.5 * 8px)
+            }
+        }
+
+        // Focus state (ważne dla dostępności!)
+        &:focus + .switch-slider {
+            box-shadow: 0 0 0 3px rgba(variables.$primary-color, 0.2);
+        }
+    }
+
+    .switch-label {
+        font-family: variables.$font-family-base;
+        font-size: variables.$font-size-base;
+        margin-left: variables.$spacing-unit;
+        line-height: 1.5;
+        @include mixins.theme-aware(color, variables.$text-color-light, variables.$text-color-dark);
+    }
+}

@@ -1,0 +1,202 @@
+@use 'variables';
+@use 'mixins';
+@use 'sass:color';
+@use 'sass:math';
+
+/* --- Ogólny układ strony --- */
+// .page-content będzie zawierać wszystkie sekcje, odsuwając się od sticky headera
+.page-content {
+    flex-grow: 1; // Rozciąga się, aby wypchnąć stopkę na dół
+    // W zasadzie nic więcej tutaj nie potrzebujemy na tym etapie
+    // ponieważ poszczególne sekcje (np. hero) będą miały własne style
+}
+
+/* --- Nagłówek (Header) --- */
+.main-header {
+    position: fixed; // Zmieniamy z sticky na fixed
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100; // Nadal wysoki z-index
+    padding: variables.$padding-md variables.$padding-lg;
+
+    // Tło nagłówka - to jest klucz do bluru
+    // Bardzo niska opacity tła, aby backdrop-filter był widoczny
+    @include mixins.theme-aware(background-color, rgba(255, 255, 255, 0.05), rgba(31, 47, 70, 0.5));
+
+    // Efekt rozmycia
+    @include mixins.theme-aware(backdrop-filter, blur(12px) saturate(1.8), blur(30px) saturate(2));
+    // Fallback dla przeglądarek, które nie wspierają backdrop-filter
+    // Możesz użyć bardziej widocznego tła, jeśli chcesz, np. 0.8 opacity
+    @supports not (backdrop-filter: blur(1px)) {
+        @include mixins.theme-aware(background-color, rgba(255, 255, 255, 0.8), rgba(20, 34, 53, 0.9));
+    }
+    
+    // Delikatny cień na dole nagłówka, widoczny głównie w trybie jasnym
+    @include mixins.theme-aware(border-bottom, 1px solid rgba(variables.$border-color-light, 0.3), none);
+    @include mixins.theme-aware(box-shadow, 0 2px 5px rgba(0,0,0,0.1), none);
+
+    .header-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .logo {
+        h1 {
+            font-family: variables.$font-family-heading;
+            font-size: variables.$font-size-base * 1.5;
+            font-weight: variables.$font-weight-bold;
+            margin: 0;
+
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+
+            @include mixins.theme-aware(color, variables.$text-color-light, variables.$text-color-dark);
+        }
+    }
+
+    .main-nav {
+        display: flex;
+        gap: variables.$spacing-unit;
+
+        .btn {
+            // Kolory tekstu przycisków w nagłówku - kontrastujące
+            background-color: transparent !important; // Przezroczyste tło
+            border-color: transparent !important; // Brak ramki
+            box-shadow: none !important; // Brak cienia
+            
+            @include mixins.theme-aware(color, variables.$text-color-light, variables.$text-color-dark);
+
+            &:hover {
+                // Lekkie tło przy najechaniu
+                background-color: rgba(0,0,0,0.1) !important;
+            }
+        }
+        .btn--outline {
+            // Ramka dla przycisków outline
+            @include mixins.theme-aware(border-color, variables.$text-color-light, variables.$text-color-dark);
+            &:hover {
+                background-color: transparent !important;
+
+                @include mixins.theme-aware(border-color, variables.$primary-color, color.adjust(variables.$primary-color, $lightness: 10%));
+            }
+        }
+    }
+}
+
+/* --- Sekcja Hero --- */
+.hero-section {
+    width: 100%;
+    min-height: 100vh; // Nadal cała wysokość viewportu
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    // Padding na górze, żeby treść nie chowała się pod sticky headerem
+    // Wysokość nagłówka zależy od jego zawartości i paddingu.
+    // Zakładamy około 80px (zmienna na podstawie variables.$spacing-unit * 6 + padding)
+    // Może trzeba będzie to dostosować empirycznie po pierwszym sprawdzeniu.
+    padding-top: calc(80px + variables.$padding-lg); // PRZYKŁADOWA WARTOŚĆ! Sprawdź rzeczywistą wysokość nagłówka.
+    padding-bottom: variables.$padding-lg * 2;
+    padding-left: variables.$padding-md;
+    padding-right: variables.$padding-md;
+
+    position: relative; // Dla overlayu i hero-content z z-index
+    text-align: center; // Centrowanie tekstu wewnątrz hero-content
+
+    // Overlay, aby tekst był czytelny na obrazie tła
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1; // Pod treścią hero-content
+
+        @include mixins.theme-aware(background-color, rgba(254, 254, 254, 0.259), rgba(0, 0, 0, 0.418)); // Ciemniejszy overlay
+    }
+
+    .hero-content {
+        position: relative;
+        z-index: 2; // Tekst nad overlayem
+        max-width: 700px; // Ograniczenie szerokości tekstu
+        margin: variables.$spacing-unit*15 0 auto 0; // Centrowanie na środku sekcji hero
+
+        h2 {
+            font-family: variables.$font-family-heading;
+            font-size: variables.$font-size-base * 4;
+            font-weight: variables.$font-weight-black;
+            margin-bottom: variables.$spacing-unit * 2;
+            line-height: 1.2;
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.4); // Delikatny cień
+
+            @include mixins.theme-aware(color, variables.$text-color-light, variables.$text-color-dark); // Tekst hero zawsze jasny
+        }
+
+        p {
+            font-family: variables.$font-family-base;
+            font-size: variables.$font-size-base * 1.2;
+            margin-bottom: variables.$spacing-unit * 3;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.3); // Delikatny cień
+
+            @include mixins.theme-aware(color, variables.$text-color-light, variables.$text-color-dark); // Tekst hero zawsze jasny
+        }
+
+        .btn--large {
+            padding: variables.$padding-md variables.$padding-lg * 1.5;
+            font-size: variables.$font-size-base * 1.1;
+            border-radius: variables.$border-radius-pill;
+            // Kolory przycisku CTA
+            @include mixins.theme-aware(color, variables.$card-background-light, variables.$text-color-dark);
+            @include mixins.theme-aware(background-color, variables.$primary-color, color.adjust(variables.$primary-color, $lightness: 10%));
+        }
+    }
+}
+
+/* --- Sekcje Placeholder (do testowania scrollowania) --- */
+.placeholder-section {
+    min-height: 50vh; // Każda sekcja ma co najmniej 50% wysokości viewportu
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: variables.$padding-lg;
+    text-align: center;
+    @include mixins.theme-aware(background-color, variables.$background-light, variables.$background-dark); // Tło dopasowane do motywu
+
+    .container {
+        max-width: 800px;
+        margin: 0 auto;
+        h3 {
+            font-family: variables.$font-family-heading;
+            font-size: variables.$font-size-base * 2;
+            margin-bottom: variables.$spacing-unit;
+            @include mixins.theme-aware(color, variables.$text-color-light, variables.$text-color-dark);
+        }
+        p {
+            font-family: variables.$font-family-base;
+            font-size: variables.$font-size-base;
+            @include mixins.theme-aware(color, variables.$text-color-light, variables.$text-color-dark);
+        }
+    }
+}
+
+/* --- Stopka (Footer) --- */
+.main-footer {
+    padding: variables.$padding-md variables.$padding-lg;
+    text-align: center;
+    font-size: variables.$font-size-base * 0.9;
+    margin-top: auto; // Wypycha stopkę na sam dół flex-container (body)
+
+    @include mixins.theme-aware(background-color, variables.$card-background-light, variables.$card-background-dark); // Użyj koloru karty dla spójności
+    @include mixins.theme-aware(border-top, 1px solid variables.$border-color-light, 1px solid variables.$border-color-dark);
+
+    @include mixins.theme-aware(color, variables.$text-color-light, variables.$text-color-dark);
+}
