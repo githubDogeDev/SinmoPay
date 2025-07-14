@@ -484,8 +484,7 @@ textarea.is-error {
         cursor: pointer;
         padding: 0;
         margin-left: auto;
-        @include mixins.theme-aware(color, variables.$text-color-light, variables.$text-color-dark);
-
+        color: inherit; // Dziedziczy kolor z rodzica (powiadomienia)
         &:hover {
             opacity: 0.4;
         }

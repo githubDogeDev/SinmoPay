@@ -663,25 +663,25 @@ textarea.is-error {
   transform: translateY(0);
 }
 .notification-banner.notification--success {
-  border-color: #116625;
+  border-color: #009a24;
 }
 .dark-mode .notification-banner.notification--success {
   border-color: #9dffb4;
 }
 .notification-banner.notification--success {
-  color: #116625;
+  color: #009a24;
 }
 .dark-mode .notification-banner.notification--success {
   color: #9dffb4;
 }
 .notification-banner.notification--error {
-  border-color: #8c0916;
+  border-color: #a00010;
 }
 .dark-mode .notification-banner.notification--error {
   border-color: #ffa5ad;
 }
 .notification-banner.notification--error {
-  color: #8c0916;
+  color: #a00010;
 }
 .dark-mode .notification-banner.notification--error {
   color: #ffa5ad;
@@ -699,13 +699,13 @@ textarea.is-error {
   color: rgb(102, 175.2, 255);
 }
 .notification-banner.notification--warning {
-  border-color: #a97f00;
+  border-color: #f7ad00;
 }
 .dark-mode .notification-banner.notification--warning {
   border-color: #ffe389;
 }
 .notification-banner.notification--warning {
-  color: #a97f00;
+  color: #f7ad00;
 }
 .dark-mode .notification-banner.notification--warning {
   color: #ffe389;
@@ -718,12 +718,7 @@ textarea.is-error {
   cursor: pointer;
   padding: 0;
   margin-left: auto;
-}
-.notification-banner .notification__close-btn {
-  color: #1C1C1E;
-}
-.dark-mode .notification-banner .notification__close-btn {
-  color: #EAEAEA;
+  color: inherit;
 }
 .notification-banner .notification__close-btn:hover {
   opacity: 0.4;

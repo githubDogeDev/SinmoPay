@@ -25,15 +25,15 @@ $border-color-dark: #333333; // Ciemniejsza ramka w trybie ciemnym
 // Kolory dla komunikatów (błędy, ostrzeżenia, sukcesy, info)
 // kolory dla błędów
 $error-color-light: #ffa5ad; // Jasny kolor tła dla błędów w trybie jasnym
-$error-color-dark: #8c0916; // Ciemniejszy kolor tła dla bł
+$error-color-dark: #a00010; // Ciemniejszy kolor tła dla bł
 
 // kolory dla ostrzeżeń
 $warning-color-light: #ffe389;
-$warning-color-dark: #a97f00;
+$warning-color-dark: #f7ad00;
 
 // kolory dla sukcesów
 $success-color-light: #9dffb4; // Jasny kolor tła dla sukcesów w trybie jasnym
-$success-color-dark: #116625; // Ciemniejszy kolor tła dla sukcesów w trybie ciemnym
+$success-color-dark: #009a24; // Ciemniejszy kolor tła dla sukcesów w trybie ciemnym
 
 // kolory dla informacji
 $info-color-light: color.adjust($primary-color, $lightness: 20%); // color.adjust($primary-color, $lightness: 20%)
@@ -42,8 +42,6 @@ $info-color-dark: $primary-color; // aaa
 // Zmienne dla zaokrągleń (używane w pop-upach)
 $border-radius: 8px;   // Standardowy promień zaokrąglenia
 $border-radius-xl: 20px; // Większy promień dla pop-upu
-
-
 
 // Zaokrąglenia (już masz, ale możesz je dostosować)
 $border-radius-small: 0.5rem;
