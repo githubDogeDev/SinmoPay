@@ -1,3 +1,7 @@
+<?php
+session_start(); // Rozpoczęcie sesji, aby móc przechowywać dane użytkownika
+?>
+
 <!DOCTYPE html>
 <html lang="pl">
 <head>
@@ -11,11 +15,36 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="form-page">
+    <?php
+        $message = null;
+        $message_type = null;
+
+        if (isset($_SESSION['registration_success'])) {
+            $message = $_SESSION['registration_success'];
+            $message_type = 'success';
+            unset($_SESSION['registration_success']);
+        } elseif (isset($_SESSION['registration_error'])) {
+            $message = $_SESSION['registration_error'];
+            $message_type = 'error';
+            unset($_SESSION['registration_error']);
+        } elseif (isset($_SESSION['registration_info'])) {
+            $message = $_SESSION['registration_info'];
+            $message_type = 'info';
+            unset($_SESSION['registration_info']);
+        }
+
+        if ($message && $message_type) {
+            echo '<input type="hidden" id="server-message" ';
+            echo 'data-message="' . htmlspecialchars($message) . '" ';
+            echo 'data-type="' . htmlspecialchars($message_type) . '">';
+        }
+    ?>
+
 
     <main class="auth-container">
         <div class="auth-card">
             <h2>Zarejestruj się w <a href="index.php">Sinmo<span>Pay</span></a></h2>
-            <form action="#" method="POST">
+            <form action="process_register.php" method="POST">
                 <div class="form-group">
                     <label for="username">Nazwa użytkownika</label>
                     <input type="text" id="username" name="username" placeholder="Wprowadź nazwę użytkownika" required>

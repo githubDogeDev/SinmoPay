@@ -27,12 +27,6 @@
 //     $('#theme-toggle').text($('body').hasClass('dark-mode') ? 'Tryb Jasny' : 'Tryb Ciemny');
 // });
 
-// public/js/main.js
-
-// public/js/main.js
-
-// public/js/main.js
-
 $(document).ready(function() {
     const themeToggleBtn = $('#theme-toggle');
     const body = $('body');
@@ -61,5 +55,47 @@ $(document).ready(function() {
         }
     });
 
-    // Inne skrypty, jeśli masz
+    // --- Funkcja do wyświetlania pop-upów z wiadomościami ---
+    function displayMessagePopup(message, type) {
+        if (!message || !type) {
+            return;
+        }
+
+        const $overlay = $('<div class="popup-overlay"></div>');
+        const $messageBox = $('<div class="popup-message"></div>');
+        $messageBox.addClass('popup--' + type);
+        $messageBox.html(message); // Używamy .html(), bo PHP używa htmlspecialchars
+
+        $overlay.append($messageBox);
+        $('body').append($overlay);
+
+        $overlay.hide().fadeIn(300);
+
+        $overlay.on('click', function(e) {
+            if ($(e.target).is($overlay)) {
+                $overlay.fadeOut(300, function() {
+                    $(this).remove();
+                });
+            }
+        });
+
+        setTimeout(function() {
+            $overlay.fadeOut(300, function() {
+                $(this).remove();
+            });
+        }, 5000); // 5 sekund
+    }
+
+    // --- Inicjalizacja pop-upu przy ładowaniu strony ---
+    const $serverMessageInput = $('#server-message');
+    if ($serverMessageInput.length) {
+        const message = $serverMessageInput.data('message');
+        const type = $serverMessageInput.data('type');
+        displayMessagePopup(message, type);
+        $serverMessageInput.remove(); // Usuń ukryty input po odczytaniu
+    }
 });
+
+
+
+

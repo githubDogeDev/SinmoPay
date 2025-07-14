@@ -612,6 +612,62 @@ textarea.is-error {
   color: #EAEAEA;
 }
 
+/* --- Pop-up Messages --- */
+.popup-message {
+  padding: 1.5rem 2rem;
+  border-radius: 20px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  max-width: 90%;
+  width: fit-content;
+  text-align: center;
+  font-size: 0.85rem;
+  font-weight: 700;
+  position: relative;
+  overflow: hidden;
+}
+.popup-message {
+  background-color: #FFFFFF;
+}
+.dark-mode .popup-message {
+  background-color: #1C1C1E;
+}
+.popup-message {
+  color: #EAEAEA;
+}
+.dark-mode .popup-message {
+  color: #1C1C1E;
+}
+.popup-message::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 20px;
+  border: 2px solid;
+  pointer-events: none;
+  z-index: 1;
+}
+.popup-message.popup--success {
+  color: #155724;
+}
+.popup-message.popup--success::before {
+  border-color: #155724;
+}
+.popup-message.popup--error {
+  color: #721c24;
+}
+.popup-message.popup--error::before {
+  border-color: #721c24;
+}
+.popup-message.popup--info {
+  color: #004085;
+}
+.popup-message.popup--info::before {
+  border-color: #004085;
+}
+
 /* --- Ogólny układ strony --- */
 .page-content {
   flex-grow: 1;
@@ -992,6 +1048,27 @@ body.form-page.dark-mode {
 }
 .dark-mode .auth-links .btn--secondary:hover {
   border-color: rgb(51, 148.6, 255);
+}
+
+/* --- Pop-up Komunikaty (Modal Overlay) - Globalny układ --- */
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.popup-overlay {
+  background-color: rgba(242, 242, 247, 0.8);
+}
+.dark-mode .popup-overlay {
+  background-color: rgba(18, 18, 18, 0.8);
 }
 
 /*# sourceMappingURL=style.css.map */

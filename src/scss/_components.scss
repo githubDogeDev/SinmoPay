@@ -403,3 +403,54 @@ textarea.is-error {
         @include mixins.theme-aware(color, variables.$text-color-light, variables.$text-color-dark);
     }
 }
+
+/* --- Pop-up Messages --- */
+.popup-message {
+    padding: variables.$padding-lg variables.$padding-xl;
+    border-radius: variables.$border-radius-xl;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    max-width: 90%;
+    width: fit-content;
+    text-align: center;
+    font-size: variables.$font-size-md;
+    font-weight: variables.$font-weight-bold;
+    position: relative;
+
+    overflow: hidden;
+    // Kolor tła dymka, zależny od motywu
+    @include mixins.theme-aware(background-color, variables.$card-background-light, variables.$card-background-dark);
+
+    // Kolor tekstu w pop-upie, dostosowany do motywu. Będzie nadpisany przez typ komunikatu.
+    @include mixins.theme-aware(color, variables.$text-color-dark, variables.$text-color-light);
+
+    // Ramka - pseudo-element ::before
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border-radius: variables.$border-radius-xl;
+        border: 2px solid;
+        pointer-events: none;
+        z-index: 1;
+    }
+
+    // Style specyficzne dla typu komunikatu (kolor ramki i tekstu)
+    &.popup--success {
+        &::before { border-color: variables.$success-color-dark; }
+        color: variables.$success-color-dark;
+    }
+
+    &.popup--error {
+        &::before { border-color: variables.$error-color-dark; }
+        color: variables.$error-color-dark;
+    }
+
+    &.popup--info {
+        &::before { border-color: variables.$info-color-dark; }
+        color: variables.$info-color-dark;
+    }
+    // Możesz dodać inne typy, np. popup--warning
+}

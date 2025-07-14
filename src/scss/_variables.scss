@@ -22,10 +22,19 @@ $card-background-dark: #1C1C1E; // Ciemny szary dla kart w trybie ciemnym
 $border-color-light: #E0E0E0; // Delikatna ramka w trybie jasnym
 $border-color-dark: #333333; // Ciemniejsza ramka w trybie ciemnym
 
-// Kolory stanów (opcjonalnie, do dodania później dla sukcesu/błędu/ostrzeżenia)
-// $success-color: #28A745;
-// $error-color: #DC3545;
-// $warning-color: #FFC107;
+// Kolory komunikatów (dla pop-upów)
+$success-color-light: #d4edda;
+$success-color-dark: #155724;
+$error-color-light: #f8d7da;
+$error-color-dark: #721c24;
+$info-color-light: #cce5ff;
+$info-color-dark: #004085;
+
+// Zmienne dla zaokrągleń (używane w pop-upach)
+$border-radius: 8px;   // Standardowy promień zaokrąglenia
+$border-radius-xl: 20px; // Większy promień dla pop-upu
+
+
 
 // Zaokrąglenia (już masz, ale możesz je dostosować)
 $border-radius-small: 0.5rem;
@@ -50,6 +59,12 @@ $font-family-base: 'Lato', sans-serif; // Upewnij się, że masz tę czcionkę w
 
 $font-size-base: 0.85rem;
 $font-weight-normal: 400;
+
+$font-size-xs: 0.6rem; // Używane w przyciskach i nagłówkach
+$font-size-sm: 0.75rem; // Używane w przyciskach i nagłówkach
+$font-size-md: $font-size-base; // Używane w przyciskach i nagłówkach
+$font-size-lg: 1rem; // Używane w większych nagłówkach
+$font-size-xl: 1.25rem; // Używane w tytuł
 $font-weight-semibold: 600;
 $font-weight-bold: 700;
 $font-weight-black: 900;
@@ -59,6 +74,7 @@ $spacing-unit: 0.5rem;
 $padding-sm: $spacing-unit;
 $padding-md: $spacing-unit * 2;
 $padding-lg: $spacing-unit * 3;
+$padding-xl: $spacing-unit * 4;
 
 // Kolory stanów formularzy (nowe, jeśli chcesz)
 $input-border-color-light: $border-color-light; // Domyślna ramka jak w kartach
