@@ -1,3 +1,36 @@
+<?php
+// public/example_components.php
+session_start(); // To musi być na samym początku pliku!
+
+// --- PHP do obsługi formularza testowego ---
+// Ten blok MUSI być przed jakimkolwiek outputem HTML
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $duration_val = isset($_POST['duration']) ? (int)$_POST['duration'] : 5000;
+    if ($duration_val < 0) { $duration_val = 0; }
+
+    $_SESSION['notification'] = [
+        'message' => htmlspecialchars($_POST['message'] ?? 'Brak komunikatu', ENT_QUOTES, 'UTF-8'),
+        'type' => htmlspecialchars($_POST['type'] ?? 'info', ENT_QUOTES, 'UTF-8'),
+        'duration' => $duration_val,
+        'dismissible' => isset($_POST['dismissible'])
+    ];
+    header('Location: example_components.php'); // To wywołanie musi być przed outputem
+    exit(); // Ważne: Zakończ skrypt po przekierowaniu
+}
+
+// --- WAŻNE: Dołącz notifications_engine.php TUTAJ ---
+// require_once '../src/templates/notifications_engine.php';
+// Ten plik również generuje HTML, więc powinien być dołączony po obróbce POST
+// i przed głównym outputem HTML, ale nie na samym początku.
+// Najlepiej, aby został dołączony zaraz przed zamknięciem tagu </body>,
+// jak to już zrobiliśmy w poprzedniej instrukcji,
+// ale po całej logice nagłówków i przekierowań.
+// Dlatego zostawiamy to require_once na dole pliku, tak jak było.
+
+// reszta kodu HTML zaczyna się poniżej...
+?>
+
+
 <!DOCTYPE html>
 <html lang="pl">
 <head>
@@ -128,6 +161,37 @@
             </div>
         </div>
 
+        <h3>Test Powiadomień Banerowych</h3>
+        <div class="card">
+            <form action="example_components.php" method="POST">
+                <div class="form-group">
+                    <label for="message">Treść komunikatu:</label>
+                    <textarea id="message" name="message" rows="3" required>To jest testowe powiadomienie.</textarea>
+                </div>
+                <div class="form-group">
+                    <label for="type">Typ komunikatu:</label>
+                    <select id="type" name="type" required>
+                        <option value="success">Success</option>
+                        <option value="error">Error</option>
+                        <option value="info">Info</option>
+                        <option value="warning">Warning</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="duration">Czas trwania (ms, 0 = bez auto-zamykania):</label>
+                    <input type="number" id="duration" name="duration" value="5000" min="0">
+                </div>
+                <div class="form-group">
+                    <label class="checkbox-container">
+                        <input type="checkbox" id="dismissible" name="dismissible" checked>
+                        <span class="checkmark"><i class="material-icons">check</i></span>
+                        <span class="checkbox-label">Możliwość zamknięcia (przycisk X)</span>
+                    </label>
+                </div>
+                <button type="submit" class="btn btn--primary">Wyślij powiadomienie</button>
+            </form>
+        </div>
+
     </main>
 
     <footer style="padding: 20px; text-align: center; margin-top: auto;">
@@ -136,5 +200,10 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="js/main.js"></script>
+    <?php
+    // Ten require_once pozostał na dole, ponieważ generuje HTML,
+    // który jest potem odczytywany przez JavaScript.
+    require_once '../src/templates/notifications_engine.php';
+    ?>
 </body>
 </html>

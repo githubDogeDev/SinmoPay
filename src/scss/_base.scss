@@ -21,20 +21,26 @@ body {
     line-height: 1.6;
     overflow-x: hidden; // Zapobiega poziomemu scrollowaniu
 
-    // --- GLOBALNE TŁO OBRAZKOWE ---
-    background-image: variables.$hero-background-image;
-    background-size: cover;          // Obraz pokrywa całe tło
-    background-position: center;     // Obraz wyśrodkowany
-    background-repeat: no-repeat;    // Nie powtarzaj obrazu
-    background-attachment: fixed;    // Efekt paralaksy: tło jest nieruchome
-
-
     display: flex; // Ustawiamy body jako flex container
     flex-direction: column; // Elementy w kolumnie (header, main, footer)
     min-height: 100vh; // Zapewnia, że body ma co najmniej wysokość viewportu
 
-    // Domyślne kolory tekstu dla całej strony (będą nadpisywane w poszczególnych komponentach)
-    @include mixins.theme-aware(color, variables.$text-color-light, variables.$text-color-dark);
+    background-color: variables.$background-light;
+    color: variables.$text-color-light; // Domyślny kolor tekstu w trybie jasnym
+
+    &.dark-mode {
+        background-color: variables.$background-dark;
+        color: variables.$text-color-dark; // Kolor tekstu w trybie ciemnym
+    }
+
+    &.index-page {
+        background-image: url('../img/hero-bg.jpg'); // Tło dla strony głównej
+        background-attachment: fixed; // Ustawienie tła jako fixed
+        background-position: center;
+        background-size: cover; // Pokrywa całą stronę
+        color: variables.$text-color-light; // Domyślny kolor tekstu w trybie jasnym
+        font-family: variables.$font-family-base;
+    }
 }
 
 // Upewnij się, że nie masz tutaj innych background-color, które by to nadpisywały

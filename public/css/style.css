@@ -17,20 +17,23 @@ body {
   font-family: "Lato", sans-serif;
   line-height: 1.6;
   overflow-x: hidden;
-  background-image: url("../img/hero-bg.jpg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-}
-body {
+  background-color: #F2F2F7;
   color: #1C1C1E;
 }
-.dark-mode body {
+body.dark-mode {
+  background-color: #121212;
   color: #EAEAEA;
+}
+body.index-page {
+  background-image: url("../img/hero-bg.jpg");
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+  color: #1C1C1E;
+  font-family: "Lato", sans-serif;
 }
 
 /* Globalne style dla elementów interaktywnych, np. linków */
@@ -612,63 +615,121 @@ textarea.is-error {
   color: #EAEAEA;
 }
 
-/* --- Pop-up Messages --- */
-.popup-message {
-  padding: 1.5rem 2rem;
-  border-radius: 20px;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-  max-width: 90%;
-  width: fit-content;
-  text-align: center;
-  font-size: 0.85rem;
-  font-weight: 700;
-  position: relative;
-  overflow: hidden;
-}
-.popup-message {
-  background-color: #FFFFFF;
-}
-.dark-mode .popup-message {
-  background-color: #1C1C1E;
-}
-.popup-message {
-  color: #EAEAEA;
-}
-.dark-mode .popup-message {
-  color: #1C1C1E;
-}
-.popup-message::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  border-radius: 20px;
-  border: 2px solid;
+/* --- Notification Banners --- */
+.notification-container {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1050;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  max-width: 400px;
+  padding: 0 15px;
   pointer-events: none;
-  z-index: 1;
-}
-.popup-message.popup--success {
-  color: #155724;
-}
-.popup-message.popup--success::before {
-  border-color: #155724;
-}
-.popup-message.popup--error {
-  color: #721c24;
-}
-.popup-message.popup--error::before {
-  border-color: #721c24;
-}
-.popup-message.popup--info {
-  color: #004085;
-}
-.popup-message.popup--info::before {
-  border-color: #004085;
 }
 
-/* --- Ogólny układ strony --- */
+.notification-banner {
+  pointer-events: all;
+  backdrop-filter: blur(10px) saturate(1.8);
+  -webkit-backdrop-filter: blur(10px) saturate(1.8);
+  padding: 1rem 1.5rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 2px solid;
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+}
+.notification-banner {
+  background-color: rgba(255, 255, 255, 0.4);
+}
+.dark-mode .notification-banner {
+  background-color: rgba(28, 28, 30, 0.4);
+}
+.notification-banner {
+  color: #EAEAEA;
+}
+.dark-mode .notification-banner {
+  color: #1C1C1E;
+}
+.notification-banner.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+.notification-banner.notification--success {
+  border-color: #116625;
+}
+.dark-mode .notification-banner.notification--success {
+  border-color: #9dffb4;
+}
+.notification-banner.notification--success {
+  color: #116625;
+}
+.dark-mode .notification-banner.notification--success {
+  color: #9dffb4;
+}
+.notification-banner.notification--error {
+  border-color: #8c0916;
+}
+.dark-mode .notification-banner.notification--error {
+  border-color: #ffa5ad;
+}
+.notification-banner.notification--error {
+  color: #8c0916;
+}
+.dark-mode .notification-banner.notification--error {
+  color: #ffa5ad;
+}
+.notification-banner.notification--info {
+  border-color: #007AFF;
+}
+.dark-mode .notification-banner.notification--info {
+  border-color: rgb(102, 175.2, 255);
+}
+.notification-banner.notification--info {
+  color: #007AFF;
+}
+.dark-mode .notification-banner.notification--info {
+  color: rgb(102, 175.2, 255);
+}
+.notification-banner.notification--warning {
+  border-color: #a97f00;
+}
+.dark-mode .notification-banner.notification--warning {
+  border-color: #ffe389;
+}
+.notification-banner.notification--warning {
+  color: #a97f00;
+}
+.dark-mode .notification-banner.notification--warning {
+  color: #ffe389;
+}
+.notification-banner .notification__close-btn {
+  background: none;
+  border: none;
+  font-size: 0.85rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0;
+  margin-left: auto;
+}
+.notification-banner .notification__close-btn {
+  color: #1C1C1E;
+}
+.dark-mode .notification-banner .notification__close-btn {
+  color: #EAEAEA;
+}
+.notification-banner .notification__close-btn:hover {
+  opacity: 0.4;
+}
+
+/* --- Ogólny układ strony index.php --- */
 .page-content {
   flex-grow: 1;
 }

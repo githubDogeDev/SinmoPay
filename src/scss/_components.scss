@@ -404,53 +404,90 @@ textarea.is-error {
     }
 }
 
-/* --- Pop-up Messages --- */
-.popup-message {
-    padding: variables.$padding-lg variables.$padding-xl;
-    border-radius: variables.$border-radius-xl;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-    max-width: 90%;
-    width: fit-content;
-    text-align: center;
-    font-size: variables.$font-size-md;
-    font-weight: variables.$font-weight-bold;
-    position: relative;
+/* --- Notification Banners --- */
 
-    overflow: hidden;
-    // Kolor tła dymka, zależny od motywu
-    @include mixins.theme-aware(background-color, variables.$card-background-light, variables.$card-background-dark);
+// Kontener na wszystkie powiadomienia (może ich być wiele na raz, stacked)
+.notification-container {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1050;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    max-width: 400px;
+    padding: 0 15px;
+    pointer-events: none;
+}
 
-    // Kolor tekstu w pop-upie, dostosowany do motywu. Będzie nadpisany przez typ komunikatu.
+// Pojedynczy baner powiadomienia
+.notification-banner {
+    pointer-events: all;
+
+    backdrop-filter: blur(10px) saturate(1.8); // Efekt rozmycia i nasycenia
+    -webkit-backdrop-filter: blur(10px) saturate(1.8); // Wsparcie dla WebKit (Safari)
+
+    padding: variables.$padding-md variables.$padding-lg;
+    border-radius: variables.$border-radius-medium;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+
+    display: flex;
+    align-items: center;
+    gap: variables.$spacing-unit;
+    
+    // Ramka (obramowanie) zmieniające kolor w zależności od typu
+    border: 2px solid;
+    
+    // Animacja pojawiania się i znikania
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+
+    // Kolor tekstu, zależny od motywu, ale nadpisany przez typ
+    // To mixin zapewni, że kolor tekstu będzie dostosowany do motywu,
+    // ale w zależności od typu komunikatu (error, success) zostanie nadpisany.
+    @include mixins.theme-aware(background-color, rgba(variables.$card-background-light, 0.4), rgba(variables.$card-background-dark, 0.4));
     @include mixins.theme-aware(color, variables.$text-color-dark, variables.$text-color-light);
-
-    // Ramka - pseudo-element ::before
-    &::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        border-radius: variables.$border-radius-xl;
-        border: 2px solid;
-        pointer-events: none;
-        z-index: 1;
+    
+    &.show {
+        opacity: 1;
+        transform: translateY(0);
     }
 
-    // Style specyficzne dla typu komunikatu (kolor ramki i tekstu)
-    &.popup--success {
-        &::before { border-color: variables.$success-color-dark; }
-        color: variables.$success-color-dark;
+    // Style dla różnych typów powiadomień
+    // Tutaj kolory ramki i tekstu (dla tekstu nadpisuje domyślny kolor)
+    &.notification--success {
+        @include mixins.theme-aware(border-color, variables.$success-color-dark, variables.$success-color-light);
+        @include mixins.theme-aware(color, variables.$success-color-dark, variables.$success-color-light);
+    }
+    &.notification--error {
+        @include mixins.theme-aware(border-color, variables.$error-color-dark, variables.$error-color-light);
+        @include mixins.theme-aware(color, variables.$error-color-dark, variables.$error-color-light);
+    }
+    &.notification--info {
+        @include mixins.theme-aware(border-color, variables.$info-color-dark, variables.$info-color-light);
+        @include mixins.theme-aware(color, variables.$info-color-dark, variables.$info-color-light);
+    }
+    &.notification--warning {
+        @include mixins.theme-aware(border-color, variables.$warning-color-dark, variables.$warning-color-light);
+        @include mixins.theme-aware(color, variables.$warning-color-dark, variables.$warning-color-light);
     }
 
-    &.popup--error {
-        &::before { border-color: variables.$error-color-dark; }
-        color: variables.$error-color-dark;
-    }
+    // Przycisk zamykający (X)
+    .notification__close-btn {
+        background: none;
+        border: none;
+        font-size: variables.$font-size-md;
+        line-height: 1;
+        cursor: pointer;
+        padding: 0;
+        margin-left: auto;
+        @include mixins.theme-aware(color, variables.$text-color-light, variables.$text-color-dark);
 
-    &.popup--info {
-        &::before { border-color: variables.$info-color-dark; }
-        color: variables.$info-color-dark;
+        &:hover {
+            opacity: 0.4;
+        }
     }
-    // Możesz dodać inne typy, np. popup--warning
 }
